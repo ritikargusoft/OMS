@@ -1,6 +1,6 @@
 import { parse } from "dotenv";
 import express from "express";
-import { placeOrder } from "../controllers/customerController";
+import { placeOrder } from "../controllers/customerController.js";
 
 const router = express.Router();
 

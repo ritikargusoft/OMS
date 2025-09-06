@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { db } from "../config/db";
+import { db } from "../config/db.js";
 import { users } from "../models/users.js";
 
 

@@ -1,4 +1,6 @@
 import { int, mysqlTable, serial, timestamp } from "drizzle-orm/mysql-core";
+import { users } from "./users";
+import { products } from "./products";
 
 export const orders = mysqlTable("orders",{
     id: serial("id").primaryKey(),

@@ -1,8 +1,8 @@
-import { db } from "../config/db.js";
-import { orders } from "../models/order.js";
-import { products } from "../models/product.js";
 import { eq } from "drizzle-orm";
-import { OutOfStockException, InvalidProductException } from "../utils/errors.js";
+import { db } from "../config/db.js";
+import { orders } from "../models/orders.js";
+import { products } from "../models/products.js";
+import { InvalidProductException, OutOfStockException } from "../utils/errors.js";
 
 // Customer places an order
 export async function placeOrder(customerId, productId, quantity) {

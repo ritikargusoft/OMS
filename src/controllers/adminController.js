@@ -1,5 +1,6 @@
 import { lt } from "drizzle-orm";
-import { products } from "../models";
+import { products } from "../models/products.js";
+import { db } from "../config/db.js";
 
 
 //add a product
