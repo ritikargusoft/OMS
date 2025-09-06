@@ -1,11 +1,20 @@
-import { lt } from "drizzle-orm";
+import { eq, lt } from "drizzle-orm";
 import { products } from "../models/products.js";
 import { db } from "../config/db.js";
+import { validProductInput } from "../utils/validate.js";
 
 
 //add a product
 export async function addProduct({name, price, stock}) {
-    const[product] = await db.insert(products).values({name, price, stock}).returning();
+    validProductInput({name,price,stock})
+
+    //checking for duplicate name
+    const existing = await db.select().from(products).where(eq(products.name, name))
+    if(existing.length >0){
+        throw new Error("Product of this name already exists");
+    }
+
+    const[product] = await db.insert(products).values({name, price, stock,}).returning();
     return product;
 }
 
