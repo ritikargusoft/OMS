@@ -1,6 +1,6 @@
-import { parse } from "dotenv";
 import express from "express";
 import { placeOrder, placeOrderSim, simulateConcurrent } from "../controllers/customerController.js";
+import { getAllOrderSummaries, getOrderSummary } from "../services/orderDetailsService.js";
 
 const router = express.Router();
 
@@ -22,5 +22,20 @@ router.post('/customers/:id/orders', async(req,res)=>{
         res.status(400).json({error: error.message})
     }
 });
+
+
+//summary
+router.get("/:id/summary",async(req,res)=>{
+    const summary = await getOrderSummary(Number(req.params.id));
+    if(!summary) return res.status(400).json({error:"Order not found"})
+        res.json(summary)
+})
+
+//all summariees
+router.get("/summary/all",async(req,res)=>{
+    const summaries = await getAllOrderSummaries();
+        if(!summaries) return res.status(400).json({error:"Order not found"})
+        res.json(summaries)
+})
 
 export const customerRoutes = router;   

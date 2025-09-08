@@ -4,8 +4,8 @@ import { products } from "./products.js";
 
 export const orders = mysqlTable("orders",{
     id: serial("id").primaryKey(),
-    customerId: int("customer_id").references(() => users.id),
-    productId: int("product_id").references(()=> products.id),
+    customerId: int("customer_id"),
+    productId: int("product_id"),
     quantity: int("quantity").notNull(),
     createdAt: timestamp("created_at").defaultNow(),
 });
