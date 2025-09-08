@@ -5,9 +5,9 @@ export const products = mysqlTable("products",{
   name:varchar("name",{length:200}).notNull(),
   price:double("price").notNull(),
   stock:int("stock").notNull(),
-},
-(table)=>{
-  return{
-    uniqueName: uniqueIndex("unique_product_name").on(table.name),
-  }
+// },
+// (table)=>{
+//   return{
+//     uniqueName: uniqueIndex("unique_product_name").on(table.name),
+//   }
 });

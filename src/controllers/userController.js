@@ -1,6 +1,7 @@
 import { eq } from "drizzle-orm";
 import { db } from "../config/db.js";
 import { users } from "../models/users.js";
+import { validateUserInput } from "../utils/validate.js";
 
 
 export async function displayProfile(userId) {
@@ -12,6 +13,7 @@ export async function displayProfile(userId) {
 }
 
 export async function createUser({name,email,role}) {
-    const [user] = await db.insert(users).values({name,email,role}).$returningId();
+        validateUserInput({name,email,role})
+    const [user] = await db.insert(users).values({name,email,role}).returning();
     return user;
 }

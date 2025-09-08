@@ -3,9 +3,11 @@ import { db } from "../config/db.js";
 import { orders } from "../models/orders.js";
 import { products } from "../models/products.js";
 import { InvalidProductException, OutOfStockException } from "../utils/errors.js";
+import { validateOrderInput } from "../utils/validate.js";
 
 // Customer places an order
 export async function placeOrder(customerId, productId, quantity) {
+  validateOrderInput({productId,quantity})
   // check product
   const [product] = await db.select().from(products).where(eq(products.id, productId));
 
