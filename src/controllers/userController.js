@@ -14,6 +14,6 @@ export async function displayProfile(userId) {
 
 export async function createUser({name,email,role}) {
         validateUserInput({name,email,role})
-    const [user] = await db.insert(users).values({name,email,role}).returning();
+    const [user] = await db.insert(users).values({name,email,role}).$returningId();
     return user;
 }

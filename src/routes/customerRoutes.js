@@ -1,8 +1,15 @@
 import { parse } from "dotenv";
 import express from "express";
-import { placeOrder } from "../controllers/customerController.js";
+import { placeOrder, placeOrderSim, simulateConcurrent } from "../controllers/customerController.js";
 
 const router = express.Router();
+
+
+//single order
+router.post("/customers/orders", placeOrderSim)
+
+//simulate concurrent
+router.post("/customer/orders/concurrent", simulateConcurrent)
 
 router.post('/customers/:id/orders', async(req,res)=>{
     try {

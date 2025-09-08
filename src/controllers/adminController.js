@@ -14,7 +14,7 @@ export async function addProduct({name, price, stock}) {
         throw new Error("Product of this name already exists");
     }
 
-    const[product] = await db.insert(products).values({name, price, stock,}).returning();
+    const[product] = await db.insert(products).values({name, price, stock,}).$returningId();
     return product;
 }
 
